@@ -4,10 +4,13 @@
 #         self.val = x
 #         self.next = None
 
+"""
+双指针+ dummyhead 常规操作
+"""
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
 
-        dummyhead = ListNode(None)
+        dummyhead = ListNode()
         dummyhead.next = head
         walker, runner = dummyhead,dummyhead
         while n>0:

@@ -1,3 +1,6 @@
+"""
+没什么取巧的地方
+"""
 class Solution:
     def myAtoi(self, str: str) -> int:
         INT_MAX = 2**31-1
