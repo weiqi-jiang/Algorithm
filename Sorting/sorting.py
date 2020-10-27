@@ -1,14 +1,4 @@
-def insertSort(nums):
-	leng = len(nums)
-	for i in range(1,leng):
-		key = nums[i]
-		for j in range(i-1,-1,-1):
-			if nums[j]>key:
-				nums[j+1]=nums[j]
-				nums[j]= key
-			else:
-				break
-	return nums
+
 	
 def quick_sort_standord(array,low,high):
     ''' realize from book "data struct" of author 严蔚敏
@@ -51,16 +41,6 @@ def bubbleSort(nums):
 	return nums
 
 
-#遍历， 每次找到最小的那个
-def selectSort(nums):
-	for i in range(0,len(nums)):
-		Min = i
-		for j in range(i+1,len(nums)):
-			if nums[j]<nums[Min]:
-				Min = j
-		nums[i],nums[Min] = nums[Min], nums[i]
-	return nums
-
 
 def mergeSort(nums):
 	if len(nums)<=1:
@@ -85,13 +65,77 @@ def merge(list1,list2):
 	result+=list2[j:]
 	return result
 
-def main():
-	nums = [5,2,8,7,5,10,9,4,1]
-	print(insertSort(nums))
-	print(bubbleSort(nums))
-	print(fastSort(nums))
-	print(selectSort(nums))
-	print(mergeSort(nums))
-	
+
+    
+   
+    
+    
+"""
+选择排序
+思路：  找到元素最小值，和第一个元素交换，找到剩下元素的最小值和第二个元素交换，直到最后交换完了整个列表
+TC： (N-1) + (N-2) + ... + 1 = N(n-1)/2 = O(N^2)
+SC：O(1) 原地排序
+稳定性：元素发生交换，会出现相对位置的变化 例如 3 5 3 2
+"""
+def selectSort(nums):
+    for i in range(len(nums)):
+        Min_index = i 
+        for j in range(i+1, len(nums)):
+            if nums[j]< nums[Min_index]:
+                Min_index = j 
+        nums[i], nums[Min_index] = nums[Min_index], nums[i]
+    return nums 
+  
+
+"""
+插入排序
+思路：和洗牌一样，从第二个元素开始，如果比上一个元素小，就交换，直到找到合适的位置，这样前两个元素就是sorted，然后
+从第三个元素开始，如果比上一个元素小，就交换直到找到合适的位置，以此类推
+TC: 第2个元素需要最多1次判断，第三个元素需要最多2次判断，第n个元素需要最多n-1次判断，worst case 就是完全倒序的。O(n^2)
+SC: O(1) 原地排序 
+稳定性：稳定排序
+"""   
+def insertSort(nums):
+    if len(nums)<=1:
+        return nums 
+    for i in range(1, len(nums)):
+        ref = nums[i]
+        for j in range(i-1, -1, -1):
+            if nums[j] > ref:
+                nums[j+1], nums[j] = nums[j], ref
+            else:
+                break
+    return nums 
+    
+    
+"""
+冒泡排序
+思路：每次比较左右两个大小，大的放右边，小的放左边。一轮下来，最大的就在最右边，然后比较第二轮。
+TC: O(N^2)
+SC: O(1) 原地排序
+稳定性：稳定的 
+"""   
+def bubbleSort(nums):
+    if len(nums)<=1:
+        return nums 
+    for i in range(len(nums)):
+        for j in range(1,len(nums)-i):
+            if nums[j-1] > nums[j]:
+                nums[j-1], nums[j] = nums[j], nums[j-1]
+        print(nums)
+    return nums
+            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 if __name__  ==  "__main__":
-	main()
+    nums = [5,2,6,4,1]
+    print(bubbleSort(nums))
