@@ -40,34 +40,6 @@ def bubbleSort(nums):
 				nums[i],nums[j] = nums[j],num[i]
 	return nums
 
-
-
-def mergeSort(nums):
-	if len(nums)<=1:
-		return nums
-	mid = len(nums)//2
-	left = mergeSort(nums[:mid])
-	right = mergeSort(nums[mid:])
-	return merge(left,right)
-	
-	
-def merge(list1,list2):
-	i,j = 0,0
-	result = []
-	while i<len(list1) and j<len(list2):
-		if list1[i]<list2[j]:
-			result.append(list1[i])
-			i+=1
-		else:
-			result.append(list2[j])
-			j+=1
-	result+=list1[i:]
-	result+=list2[j:]
-	return result
-
-
-    
-   
     
     
 """
@@ -94,6 +66,7 @@ def selectSort(nums):
 TC: 第2个元素需要最多1次判断，第三个元素需要最多2次判断，第n个元素需要最多n-1次判断，worst case 就是完全倒序的。O(n^2)
 SC: O(1) 原地排序 
 稳定性：稳定排序
+适用性： 小规模或者基本有序时高效
 """   
 def insertSort(nums):
     if len(nums)<=1:
@@ -122,15 +95,83 @@ def bubbleSort(nums):
         for j in range(1,len(nums)-i):
             if nums[j-1] > nums[j]:
                 nums[j-1], nums[j] = nums[j], nums[j-1]
-        print(nums)
     return nums
             
+# 优化版本 early stop, 如果一遍下来没有发生交换，说明左边已经是sorted了，就early stop 
+def bubbleSort_v2(nums):
+    if len(nums)<=1:
+        return nums 
+    for i in range(len(nums)):
+        flag = True 
+        for j in range(1, len(nums)-i): 
+            if nums[j-1] > nums[j]:
+                nums[j-1], nums[j] = nums[j], nums[j-1]
+                flag = False 
+        if flag:
+            return nums 
+    return nums
+
+
+"""
+希尔排序
+思路：直接插入排序的优化版本，插排适用小数据基本有序的情况，希尔排序针对大数据和无序进行了改良
+把整个序列分割成若干子序列，子序列满足小数据，直接插入排序TC优良，然后减少子序列个数，增大子序列内部元素数，
+此时子序列已经基本有序， 直接插入排序的TC依然优良
+TC: 很复杂 和增量序列有关， 最差的情况是O(N)
+SC: O(1)
+稳定性：非稳定性，直接插入排序是稳定的
+适用性：
+"""        
+def shellSort(nums):
+    if len(nums)<=1:
+        return nums 
     
+    step = len(nums)//2 
+    while step >0:
+        for i in range(step, len(nums)):
+            ref = nums[i]
+            j = i 
+            while j>=step:
+                if nums[j-step] > nums[j]:
+                    nums[j-step], nums[j] = nums[j], nums[j-step]
+                    j -= step
+                else:
+                    break
+        step = step // 2 
+    return nums 
+
+                
+"""
+递归排序
+思路：divide and conquer 的思想，分而治之。 把序列分割成两部分，两部分再各自分割成两部分，最后分割成单个元素，
+return的时候merge
+TC: O(nlogn), 递归logN次，每次都需要N次比较
+SC: O(N) 非原地排序
+稳定性：稳定
+适用性：
+"""             
+def mergeSort(nums):
+    def _merge(nums1, nums2):
+        p1, p2 = 0, 0 
+        res = []
+        while p1 < len(nums1) and p2 < len(nums2):
+            if nums1[p1] < nums2[p2]:
+                res.append(nums1[p1])
+                p1 += 1
+            else:
+                res.append(nums2[p2])
+                p2 += 1
+        res.extend(nums1[p1:])
+        res.extend(nums2[p2:])
+        return res
+        
+    if len(nums)<=1:
+        return nums 
+    left = mergeSort(nums[:len(nums)//2])
+    right = mergeSort(nums[len(nums)//2:])
+    return _merge(left, right)
     
-    
-    
-    
-    
+
     
     
     
@@ -138,4 +179,4 @@ def bubbleSort(nums):
     
 if __name__  ==  "__main__":
     nums = [5,2,6,4,1]
-    print(bubbleSort(nums))
+    print(mergeSort(nums))
