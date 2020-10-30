@@ -188,6 +188,39 @@ def mergeSort_v2(nums):
             tmp.append(groups[p1])
         groups = tmp
     return groups[0]
+
+"""
+快速排序
+思路：divide and conquer 的思想，分而治之。 把序列分割成两部分，两部分再各自分割成两部分，最后分割成单个元素，
+return的时候merge
+TC: O(nlogn), 递归logN次，每次都需要N次比较
+SC: O(N) 非原地排序
+稳定性：稳定
+适用性：
+"""        
+def quickSort(nums, left, right):
+    def _partition(nums, left, right):
+        pivot = nums[left]
+        i, j = left+1, right 
+        while True:
+            while i <= j and nums[i] <= pivot:
+                i += 1 
+            while i<= j and nums[j] >= pivot:
+                j -= 1
+            if i>=j:
+                break 
+            nums[i], nums[j] = nums[j], nums[i]
+        nums[left] = nums[j]
+        nums[j] = pivot
+        return j 
+   
+    if left>=right:
+        return nums 
+    mid = _partition(nums, left, right)
+    nums = quickSort(nums, left, mid-1)
+    nums = quickSort(nums, mid+1, right)
+    return nums
+
     
 if __name__  ==  "__main__":
     nums = [5,2,6,4,1]
