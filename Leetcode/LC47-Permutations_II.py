@@ -1,3 +1,8 @@
+"""
+BP 问题
+在LC46的基础上改进
+优化点在于每次递归的时候不是选择每个元素，而是选择unique元素
+"""
 class Solution:
     def permuteUnique(self, nums):
         """
