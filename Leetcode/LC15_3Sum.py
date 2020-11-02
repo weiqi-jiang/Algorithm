@@ -1,3 +1,6 @@
+"""
+在two sum的基础上，再加上一个维度罢了，固定一个数字的two sum
+"""
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         if len(nums)<3:
@@ -9,7 +12,7 @@ class Solution:
                 continue
             target = -nums[i]
             tmp = self.twoSum(nums,i+1,len(nums)-1,target)
-            if tmp:
+            if tmp: 
                 for t in tmp:
                     res.append([nums[i]]+t)
         return res 

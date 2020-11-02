@@ -1,3 +1,6 @@
+"""
+lc15 3sum的变种而已，没有本质区别
+"""
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         if len(nums) < 3:

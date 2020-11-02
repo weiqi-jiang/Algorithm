@@ -1,3 +1,10 @@
+"""
+思路：
+经典的递归全排列
+keys:
+1. 维护当前结果， 维护一个全局list 存放最终结果
+2. 判断是否递归结束，如果结束当前结果存入list
+"""
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
         m = {

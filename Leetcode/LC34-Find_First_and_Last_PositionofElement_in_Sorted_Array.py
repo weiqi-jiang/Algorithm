@@ -1,3 +1,7 @@
+"""
+先binary search找到任一一个目标元素
+然后以该元素为中心向两边找
+"""
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         
@@ -12,10 +16,7 @@ class Solution:
                 right+=1
             return [left+1,right-1]
                 
-        
-        
-        
-        
+      
     def binarySearch(self,nums,target):
         left,right = 0, len(nums)-1
         while left<=right:

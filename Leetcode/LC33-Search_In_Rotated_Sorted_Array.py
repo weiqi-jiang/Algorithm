@@ -1,3 +1,7 @@
+"""
+类似于二分搜索的思路
+具体逻辑看代码就行
+"""
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         

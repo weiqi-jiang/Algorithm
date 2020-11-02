@@ -1,3 +1,8 @@
+"""
+3sum是在2 pointer的基础上进行嵌套一层for loop
+4sum就是2 pointer的基础上嵌套2层for loop
+Ksum 就是在2pointer的基础上嵌套K-2 for loop
+"""
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         if len(nums)<4:

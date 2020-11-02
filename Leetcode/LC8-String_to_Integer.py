@@ -1,5 +1,5 @@
 """
-没什么取巧的地方
+没什么取巧的地方，主要isditgit 判断是否是数字。考察耐心
 """
 class Solution:
     def myAtoi(self, str: str) -> int:
