@@ -3,7 +3,12 @@
 #     def __init__(self, x):
 #         self.val = x
 #         self.next = None
-
+"""
+step
+1. 先找到整个list的长度
+2. index 为 length-step 就是breakpoint
+3. 重新构造list
+"""
 class Solution:
     def rotateRight(self, head: ListNode, k: int) -> ListNode:
         if not head:

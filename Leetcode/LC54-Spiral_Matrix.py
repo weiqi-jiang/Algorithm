@@ -1,4 +1,11 @@
-#method 1
+"""
+steps:
+1. 第一行全部extend
+2. pop 每一行的最后一个元素
+3. pop 最后一行，需要先倒序
+4. pop 每一行的第一个元素 
+注意每次都需要判断当前matrix是否还有元素没有处理，不然容易出错
+"""
 
 class Solution(object):
     def spiralOrder(self, matrix):
@@ -23,6 +30,13 @@ class Solution(object):
 		
 
 #method 2
+"""
+用一个matrix去记录当前点是否访问到了
+
+但这个题的精髓在于check=2
+如果不加check 就会一直在while loop中跳不出来
+加check=1 也不行，绕完一圈 check-=1 就跳出了，需要让他再绕一圈去确定没有可以迭代的了。
+"""
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         if not matrix:
