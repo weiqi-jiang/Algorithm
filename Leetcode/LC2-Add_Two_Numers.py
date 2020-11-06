@@ -4,6 +4,10 @@
 #         self.val = x
 #         self.next = None
 
+"""
+没什么难度，dummynode解法
+和merge sort中的merge有点像，注意进位就好了
+"""
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         
